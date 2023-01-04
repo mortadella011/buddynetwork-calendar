@@ -1,0 +1,44 @@
+<div class="modal-header text-dark">
+    <h4 class="modal-title">Frequently Asked Questions</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="onDismiss()"></button>
+</div>
+<div class="modal-body text-dark">
+    <h5>TL;DR</h5>
+
+    <p>
+        The calendar can be imported on any device/app that supports import from an iCal URL.. <br>
+        Just copy the link to your clipboard via "Copy Link" and proceed with your favourite app.
+    </p>
+
+    <h5>Import Calendar on iOS</h5>
+    <ol>
+        <li>Copy calendar URL to clipboard and open Calendar app.</li>
+        <li>Tap "Calendars"</li>
+        <li>Tap "Add Calendar"</li>
+        <li>Tap "Add Subscription Calendar"</li>
+        <li>Paste URL in filed and tap "Subscribe"</li>
+        <li>Tap "Add" to confirm the subscription</li>
+    </ol>
+
+    <h5>Import Calendar on Android</h5>
+    <ol>
+        <li>Open the calendar app of your Google account on a desktop machine (for your convenience)</li>
+        <li>Go to "Calendar"</li>
+        <li>Right click on "My Calendars", go to "Add Calendar" and select "From Internet..."</li>
+        <li>Paste URL and proceed with "OK"</li>
+        <li>Confirm import and subscription to automatic updates with "Yes"</li>
+    </ol>
+
+
+    <h5>Import Calendar in Outlook for Microsoft 365 (Desktop)</h5>
+    <ol>
+        <li>Copy calendar URL to clipboard and open Outlook.</li>
+        <li>Click the plus sign next to "Other calendars"</li>
+        <li>Click on "From URL"</li>
+        <li>Paste URL and proceed with "Add calendar"</li>
+    </ol>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="onDismiss()">Close</button>
+</div>

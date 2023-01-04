@@ -1,0 +1,6 @@
+@media (min-width: 768px) {
+    .container-md{
+        max-width: 1000px !important;
+    }
+}
+

@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+
+  frontend:
+    build: frontend
+    container_name: frontend-container
+    restart: unless-stopped
+    depends_on:
+      - server
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.teamcal.entrypoints=https"
+      - "traefik.http.routers.teamcal.rule=(Host(`${URL}`))"
+      - "traefik.http.routers.teamcal.tls=true"
+      - "traefik.http.routers.teamcal.tls.certresolver=http"
+      - "traefik.http.routers.teamcal.service=teamcal"
+      - "traefik.http.services.teamcal.loadbalancer.server.port=80"
+      - "traefik.docker.network=proxy"
+    networks:
+      - proxy
+      - default
+
+  server:
+    build: server
+    container_name: server-container
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - CAL_ID=${CAL_ID}
+      - CAL_FILENAME=${CAL_FILENAME}
+
+networks:
+  proxy:
+    external: true
