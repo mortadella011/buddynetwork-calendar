@@ -35,7 +35,8 @@ exports.getICal = async (req, res) => {
         calendar.events.list({
             calendarId: process.env.CAL_ID,
             timeMin: threeMonthsBack.toISOString(),
-            maxResults: 250 // 250 = default
+            maxResults: 250, // 250 = default
+            singleEvents: true
         }, (error, result) => {
             if (error) {
                 return res.status(404).send(status_messages.NO_CALENDAR_AVAILABLE);
@@ -92,7 +93,8 @@ exports.getAllEvents = async (req, res) => {
         calendar.events.list({
             calendarId: process.env.CAL_ID,
             timeMin: threeMonthsBack.toISOString(),
-            maxResults: 2000
+            maxResults: 2000, 
+            singleEvents: true
         }, (error, result) => {
             if (error) {
                 return res.status(404).send(status_messages.NO_CALENDAR_AVAILABLE);
