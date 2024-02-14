@@ -2,7 +2,8 @@ const status_messages = require('../shared/status_messages');
 const { google } = require('googleapis');
 const fs = require('fs');
 const moment = require("moment-timezone")
-const ical = require('ical-generator');
+const { default: ical } = require('ical-generator');
+
 
 // https://www.geeksforgeeks.org/how-to-integrate-google-calendar-in-node-js/
 
