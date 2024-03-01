@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GoogleEvent } from '../interfaces/google-event';
-import { environment } from 'src/environment';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({

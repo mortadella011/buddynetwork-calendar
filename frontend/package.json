@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-proxy-dev": "ng serve --proxy-config proxy.conf.dev.json",
+    "start-proxy-prod": "ng serve --proxy-config proxy.conf.prod.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
