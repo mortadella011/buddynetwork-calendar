@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -11,23 +11,16 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 import { ConfirmCopyComponent } from './components/confirm-copy/confirm-copy.component';
 import { FaqComponent } from './components/faq/faq.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    CalendarComponent,
-    EventDetailComponent,
-    HeaderComponent,
-    SanitizeHtmlPipe,
-    ConfirmCopyComponent,
-    FaqComponent
-  ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    HttpClientModule,
-    FullCalendarModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        CalendarComponent,
+        EventDetailComponent,
+        HeaderComponent,
+        SanitizeHtmlPipe,
+        ConfirmCopyComponent,
+        FaqComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        NgbModule,
+        FullCalendarModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

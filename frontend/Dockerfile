@@ -1,7 +1,7 @@
 FROM node:18-alpine3.17
 
 # install ng angular cli
-RUN npm install -g @angular/cli@17
+RUN npm install -g @angular/cli@18
 
 WORKDIR /home/node/app/
 
