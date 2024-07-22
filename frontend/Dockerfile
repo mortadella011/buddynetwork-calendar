@@ -1,4 +1,4 @@
-FROM node:18-alpine3.17
+FROM node:22-alpine
 
 # install ng angular cli
 RUN npm install -g @angular/cli@18
@@ -15,7 +15,7 @@ COPY src /home/node/app/src/
 RUN ng build
 
 
-FROM nginx:1.23.3-alpine
+FROM nginx:1.27.0-alpine
 
 COPY docker_nginx.conf /etc/nginx/conf.d/default.conf
-COPY  --from=0 /home/node/app/dist/* /usr/share/nginx/html/
+COPY  --from=0 /home/node/app/dist/frontend/browser/ /usr/share/nginx/html/
