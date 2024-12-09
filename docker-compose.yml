@@ -1,11 +1,11 @@
 services:
 
-  frontend:
+  teamcal-frontend:
     build: frontend
-    container_name: frontend-container
+    container_name: teamcal-frontend
     restart: unless-stopped
     depends_on:
-      - server
+      - teamcal-backend
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.teamcal.entrypoints=https"
@@ -19,9 +19,9 @@ services:
       - proxy
       - default
 
-  server:
-    build: server
-    container_name: server-container
+  teamcal-backend:
+    build: backend
+    container_name: teamcal-backend
     restart: unless-stopped
     environment:
       - NODE_ENV=production
