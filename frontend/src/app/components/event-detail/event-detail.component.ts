@@ -5,9 +5,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 // import * as moment from 'moment';
 
 @Component({
-  selector: 'app-event-detail',
-  templateUrl: './event-detail.component.html',
-  styleUrls: ['./event-detail.component.css']
+    selector: 'app-event-detail',
+    templateUrl: './event-detail.component.html',
+    styleUrls: ['./event-detail.component.css'],
+    standalone: false
 })
 export class EventDetailComponent implements OnInit {
 

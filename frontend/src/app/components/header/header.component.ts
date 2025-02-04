@@ -5,9 +5,10 @@ import { ConfirmCopyComponent } from '../confirm-copy/confirm-copy.component';
 import { FaqComponent } from '../faq/faq.component';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css'],
+    standalone: false
 })
 export class HeaderComponent {
 
