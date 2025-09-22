@@ -1,36 +1,48 @@
 <div class="modal-header text-dark">
-    <h4 class="modal-title">{{event?.title}}</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="onDismiss()"></button>
+  <h4 class="modal-title">{{event?.title}}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="onDismiss()"></button>
 </div>
 <div class="modal-body text-dark">
 
 
-    <table>
-        <tr>
-            <th class="pe-3 align-top">Start</th>
-            <td class="align-top" *ngIf="!event?.allDay">{{event_parsed?.start?.toString()|date:'dd.M.yyyy, HH:mm'}}</td>
-            <td class="align-top" *ngIf="event?.allDay">{{event_parsed?.start?.toString()|date:'dd.M.yyyy'}}</td>
-        </tr>
-        <tr>
-            <th class="pe-3 align-top">End</th>
-            <td class="align-top" *ngIf="!event?.allDay">{{event_parsed?.end?.toString()|date:'dd.M.yyyy, HH:mm'}}</td>
-            <td class="align-top" *ngIf="event?.allDay">{{event_parsed?.end?.toString()|date:'dd.M.yyyy'}}</td>
-        </tr>
-        <tr *ngIf="event?.['location']">
-            <th class="pe-3 align-top">Location</th>
-            <td class="align-top dont-break-out"> {{event?.['location']}}</td>
-        </tr>
-        <tr *ngIf="event?.['description']">
-            <th class="pe-3 align-top">Details</th>
-            <td class="align-top dont-break-out" [innerHTML]="event?.['description']|sanitizeHtml"> </td>
-        </tr>
-        <!-- <tr>
-            <th class="pe-3">Ersteller</th>
-            <td> {{eventInfo?.event?.extendedProps?.['shared']?.['creator']}}</td>
-        </tr> -->
-    </table>
+  <table>
+    <tr>
+      <th class="pe-3 align-top">Start</th>
+      @if (!event?.allDay) {
+        <td class="align-top">{{event_parsed?.start?.toString()|date:'dd.M.yyyy, HH:mm'}}</td>
+      }
+      @if (event?.allDay) {
+        <td class="align-top">{{event_parsed?.start?.toString()|date:'dd.M.yyyy'}}</td>
+      }
+    </tr>
+    <tr>
+      <th class="pe-3 align-top">End</th>
+      @if (!event?.allDay) {
+        <td class="align-top">{{event_parsed?.end?.toString()|date:'dd.M.yyyy, HH:mm'}}</td>
+      }
+      @if (event?.allDay) {
+        <td class="align-top">{{event_parsed?.end?.toString()|date:'dd.M.yyyy'}}</td>
+      }
+    </tr>
+    @if (event?.['location']) {
+      <tr>
+        <th class="pe-3 align-top">Location</th>
+        <td class="align-top dont-break-out"> {{event?.['location']}}</td>
+      </tr>
+    }
+    @if (event?.['description']) {
+      <tr>
+        <th class="pe-3 align-top">Details</th>
+        <td class="align-top dont-break-out" [innerHTML]="event?.['description']|sanitizeHtml"> </td>
+      </tr>
+    }
+    <!-- <tr>
+    <th class="pe-3">Ersteller</th>
+    <td> {{eventInfo?.event?.extendedProps?.['shared']?.['creator']}}</td>
+  </tr> -->
+</table>
 </div>
 <div class="modal-footer">
-    <!-- <button type="button" class="btn btn-primary" (click)="onConfirm()">{{text_confirm}}</button> -->
-    <button type="button" class="btn btn-primary" ngbAutofocus (click)="onDismiss()">Close</button>
+  <!-- <button type="button" class="btn btn-primary" (click)="onConfirm()">{{text_confirm}}</button> -->
+  <button type="button" class="btn btn-primary" ngbAutofocus (click)="onDismiss()">Close</button>
 </div>
