@@ -11,7 +11,7 @@ services:
       - "traefik.http.routers.teamcal.entrypoints=https"
       - "traefik.http.routers.teamcal.rule=(Host(`${URL}`))"
       - "traefik.http.routers.teamcal.tls=true"
-      - "traefik.http.routers.teamcal.tls.certresolver=http"
+      - "traefik.http.routers.teamcal.tls.certresolver=le"
       - "traefik.http.routers.teamcal.service=teamcal"
       - "traefik.http.services.teamcal.loadbalancer.server.port=80"
       - "traefik.docker.network=proxy"
