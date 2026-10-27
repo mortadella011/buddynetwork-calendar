@@ -13,12 +13,11 @@ const google_auth = JSON.parse(rawdata);
 
 //setup auth object
 const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
-const jwtClient = new google.auth.JWT(
-    google_auth.client_email,
-    null,
-    google_auth.private_key,
-    SCOPES
-);
+const jwtClient = new google.auth.JWT({
+    email: google_auth.client_email,
+    key: google_auth.private_key,
+    scopes: SCOPES
+});
 const calendar = google.calendar({
     version: 'v3',
     project: google_auth.project_id,
@@ -111,6 +110,8 @@ exports.getAllEvents = async (req, res) => {
                     ev.eventType = '';
                     ev.reminders = {};
                     ev.transparency = '';
+                    ev.hangoutLink = '';
+                    ev.conferenceData = {};
                 });
 
                 return res.status(200).send(result.data.items);
