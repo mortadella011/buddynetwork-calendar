@@ -5,10 +5,3 @@
     --bs-btn-font-size: 0.875rem !important;
     --bs-btn-border-radius: 0.25rem !important;
 }
-.fc-header-toolbar{
-    white-space: nowrap !important;
-}
-
-.fc-toolbar-title{
-    font-size: 1.5rem !important;
-}

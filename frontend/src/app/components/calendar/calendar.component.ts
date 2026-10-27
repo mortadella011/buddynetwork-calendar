@@ -1,15 +1,14 @@
-import { AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { CalendarApi, CalendarOptions, EventClickArg, EventInput } from '@fullcalendar/core';
+import { AfterViewInit, Component, HostListener, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { CalendarApi, CalendarOptions, EventClickInfo, EventInput, FullCalendarComponent } from '@fullcalendar/angular';
 import { map } from 'rxjs';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import dayGridPlugin from '@fullcalendar/angular/daygrid';
+import timeGridPlugin from '@fullcalendar/angular/timegrid';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
-import listPlugin from '@fullcalendar/list';
+import listPlugin from '@fullcalendar/angular/list';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventDetailComponent } from '../event-detail/event-detail.component';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { GoogleEvent } from 'src/app/interfaces/google-event';
-import { FullCalendarComponent } from '@fullcalendar/angular';
 
 
 
@@ -17,6 +16,7 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
     selector: 'app-calendar',
     templateUrl: './calendar.component.html',
     styleUrls: ['./calendar.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CalendarComponent implements OnInit, AfterViewInit {
@@ -36,7 +36,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.width = window.innerWidth;
   }
 
-  eventClickHandler(info: EventClickArg) {
+  eventClickHandler(info: EventClickInfo) {
 
     info.jsEvent.preventDefault(); // do not upen urls
     let event = this.events.filter(el => el.id == info.event.id)[0]
@@ -54,7 +54,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       initialView: 'dayGridMonth',
       firstDay: 1,
       // locale: 'en',
-      themeSystem: 'bootstrap5',
       plugins: [dayGridPlugin, listPlugin, timeGridPlugin, bootstrap5Plugin],
       headerToolbar: this.width < this.pageBreak ? {
         left: 'title',
@@ -66,16 +65,17 @@ export class CalendarComponent implements OnInit, AfterViewInit {
           center: '',
           right: 'prev,next today dayGridMonth,listMonth',
         },
-      buttonText: {
-        today: 'Today',
-        month: 'Month',
-        week: 'Week',
-        day: 'Day',
-        list: 'List'
+      buttons: {
+        today: { text: 'Today' },
+        dayGridMonth: { text: 'Month' },
+        listMonth: { text: 'List' },
       },
+      toolbarClass: 'text-nowrap',
+      toolbarTitleClass: 'fs-4 fw-normal',
+      dayHeaderClass: 'fw-bold',
       eventClick: (info) => this.eventClickHandler(info),
       height: "auto",
-      stickyHeaderDates: false,
+      tableHeaderSticky: false,
       views: {
         dayGridMonth: {
           eventTimeFormat: {
@@ -91,7 +91,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
             hour: '2-digit',
             minute: '2-digit',
             hour12: false,
-            separator: '  -  ',
           },
         }
 
@@ -114,7 +113,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
 
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   onWindowResize() {
 
     if (this.calendarApi == undefined)
@@ -129,7 +128,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         center: '',
         right: 'prev,next dayGridMonth,listMonth',
       };
-      this.calendarApi.updateSize()
     }
     else {
       // this.calendarApi.changeView('dayGridMonth');
@@ -167,9 +165,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         //     "creator": event.creator.email
         //   }
         // },
-        backgroundColor: color,
-        color: '#ffffff',
-        borderColor: color,
+        color: color,
       });
 
 

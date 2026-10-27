@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { EventInput } from '@fullcalendar/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { EventInput } from '@fullcalendar/angular';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 // import { subMinutes } from 'date-fns';
 // import * as moment from 'moment';
@@ -8,6 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     selector: 'app-event-detail',
     templateUrl: './event-detail.component.html',
     styleUrls: ['./event-detail.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class EventDetailComponent implements OnInit {

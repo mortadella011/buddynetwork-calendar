@@ -1,7 +1,7 @@
 FROM node:22-alpine
 
 # install ng angular cli
-RUN npm install -g @angular/cli@20
+RUN npm install -g @angular/cli@22
 
 WORKDIR /home/node/app/
 

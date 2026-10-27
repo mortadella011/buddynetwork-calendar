@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { ConfirmCopyComponent } from '../confirm-copy/confirm-copy.component';
@@ -8,6 +8,7 @@ import { FaqComponent } from '../faq/faq.component';
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HeaderComponent {
